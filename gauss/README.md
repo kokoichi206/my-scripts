@@ -42,7 +42,9 @@ cat /dev/urandom | LC_ALL=C tr -dc 0-9 | fold -w 5 | sed 's@^@0.@' | xargs -n 6
 - `awk`を使う
 - ファイルに書き込む
 ```
-cat /dev/urandom | LC_ALL=C tr -dc 0-9 | fold -w 5 | sed 's@^@0.@' | xargs -n 6 | head -n 10000 | awk '{for(i=0;i<=int(NF);i++){{if(i==0){a=0}else{a+=$i}}{if(i==NF){print 2*a/NF}}}}' > gauss
+cat /dev/urandom | LC_ALL=C tr -dc 0-9 | fold -w 5 | \
+ sed 's@^@0.@' | xargs -n 6 | head -n 10000 | \
+ awk '{for(i=0;i<=int(NF);i++){{if(i==0){a=0}else{a+=$i}}{if(i==NF){print 2*a/NF}}}}' > gauss
 ```
 
 ### そのファイルをヒストグラムにする
