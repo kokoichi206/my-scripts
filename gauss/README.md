@@ -1,8 +1,15 @@
-# 正規分布を作りたい？？
+# 正規分布を作りたい
 - 統計の勉強
 - 中心極限定理について、実例を元に確かめる
     - 一様分布の平均をとることで、ガウス分布になることをみる
     - 平均の数（標本のサイズ）をあげることで、標準偏差が小さくなるのをみる
+
+
+``` sh
+cat /dev/urandom | LC_ALL=C tr -dc 0-9 | fold -w 5 | \
+ sed 's@^@0.@' | xargs -n 6 | head -n 10000 | \
+ awk '{for(i=0;i<=int(NF);i++){{if(i==0){a=0}else{a+=$i}}{if(i==NF){print 2*a/NF}}}}' > gauss
+```
 
 ## 中心極限定理
 - [wiki](https://ja.wikipedia.org/wiki/%E4%B8%AD%E5%BF%83%E6%A5%B5%E9%99%90%E5%AE%9A%E7%90%86)の説明
